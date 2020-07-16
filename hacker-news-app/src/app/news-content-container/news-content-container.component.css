@@ -1,0 +1,28 @@
+.row{
+    text-align: center;
+}
+
+.detail-col{
+    text-align: left;
+}
+.row:nth-child(even){
+    background-color: silver;
+}
+
+.row:nth-child(odd){
+    background-color: #f3f3f3;
+}
+
+.triangle-up{
+    display: inline-block;
+    margin: 5px;
+    width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid #555;
+}
+
+.sub-text{
+    opacity: 0.7;
+}

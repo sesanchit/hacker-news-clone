@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row" *ngFor="let news of newsFeed">
+        <div class="col-2 col-lg-1">
+            {{news.num_comments}}
+        </div>
+        <div class="col-2 col-lg-1">
+            {{news.points}}
+        </div>
+        <div class="col-2 col-lg-1">
+            <div tabindex="0" class="triangle-up"></div>
+        </div>
+        <div class="col-6 col-lg-9 detail-col">
+            {{news.title?news.title:'No title available'}} 
+            <span class="sub-text">
+                by {{news.author}}  [<a href="javascript:void(0);" role="button" (click)="hideStory(news.objectID)">hide</a>]
+            </span>
+        </div>
+    </div>
+</div>
