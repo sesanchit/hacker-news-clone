@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-link" [disabled]="disablePrev" (click)="onPrevious()">Previous</button>
+            | {{ pageId }} |
+            <button type="button" class="btn btn-link" (click)="onNext()">Next</button>
+        </div>
+    </div>
+</div>

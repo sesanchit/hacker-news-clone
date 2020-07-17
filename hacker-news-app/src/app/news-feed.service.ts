@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class NewsFeedService {
 
-  newsFeedUrl= "http://hn.algolia.com/api/v1/search";
+  newsFeedUrl= "http://hn.algolia.com/api/v1/search?page=";
 
   constructor(private http: HttpClient) { }
 
-  getNews(): Observable<any>{
-    return this.http.get(this.newsFeedUrl);
+  getNewsFeed(page:number): Observable<any>{
+    return this.http.get(this.newsFeedUrl+page);
   }
 }
