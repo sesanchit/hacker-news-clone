@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewsContentContainerComponent } from './news-content-container/news-content-container.component';
 
 const routes: Routes = [
-  { path: '', component: NewsContentContainerComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'hacker-news', component: NewsContentContainerComponent },
+  { path: '', redirectTo: 'hacker-news', pathMatch: 'full' },
+  { path: '**', redirectTo: 'hacker-news', pathMatch: 'full' }
 ];
 
 @NgModule({
