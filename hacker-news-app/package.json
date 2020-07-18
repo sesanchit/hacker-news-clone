@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod && echo '/* /index.html  200' > dist/_redirects",
+    "build": "ng build --prod && echo '/* /index.html  200' > dist/hacker-news-app/_redirects",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
