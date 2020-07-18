@@ -12,7 +12,7 @@ export class NewsContentContainerComponent implements OnInit {
 
   pageId: number;
   newsFeed: any[] = [];
-  pagesFetched: Set<number> = new Set();
+  pageChangeEvent: string = "";
 
   constructor(private newsFeedService: NewsFeedService, 
     private paginationService: PaginationService,
@@ -20,6 +20,8 @@ export class NewsContentContainerComponent implements OnInit {
   
   ngOnInit() {
     this.pageNumberSubscription();
+    this.pageDirectionSubscription();
+
   }
 
   pageNumberSubscription(){
@@ -29,39 +31,58 @@ export class NewsContentContainerComponent implements OnInit {
     });
   }
 
-  cacheNewsFeed(){
-    if(!localStorage.getItem('newsFeed')){
-      this.getNewsFeed();
-    }
-    else{
-     this.newsFeed = JSON.parse(localStorage.getItem('newsFeed')); 
-    }    
-  }
-
-  getNewsFeed(){
-    this.newsFeedService.getNewsFeed(this.pageId).subscribe(res => {
-      this.newsFeed = res.hits;
-      this.updateNewsFeed();
-      this.updatePageFetches();
+  pageDirectionSubscription(){
+    this.paginationService.pageChangeDirection.subscribe(val=>{
+      this.pageChangeEvent = val;
+      this.updatePageStore(val);
     });
   }
 
-  updateNewsFeed(){
-    localStorage.setItem('newsFeed', JSON.stringify(this.newsFeed));
+
+  getNewsFeed(){
+    const newsFeedStore = this.checkNewsFeedStore();
+    if(newsFeedStore && newsFeedStore.length > 0){
+      this.newsFeed = newsFeedStore;
+    }
+    else{
+      this.newsFeedService.getNewsFeed(this.pageId).subscribe(res => {
+        this.newsFeed = res.hits;
+        this.updateNewsFeedStore();
+      });
+    }
   }
 
-  updatePageFetches(){
-    this.pagesFetched.add(this.pageId);
-    console.log(this.pagesFetched);
+  checkNewsFeedStore(){
+    const lastPage:number = localStorage.getItem("currentPage") ? +localStorage.getItem("currentPage") : 0;
+    let newsFeedStore:any = [];
+    if(this.pageId && this.pageId == lastPage){
+      newsFeedStore = JSON.parse(localStorage.getItem("newsFeedStore"));
+    }
+    return newsFeedStore;
+  }
+
+  updateNewsFeedStore(){
+    localStorage.setItem("newsFeedStore", JSON.stringify(this.newsFeed));
+    localStorage.setItem("currentPage", this.pageId.toString());
+  }
+
+  updatePageStore(val: string){
+    debugger;
+    if(val=='prev'){
+      //TODO
+    }
+    else if(val=='next'){
+      //TODO
+    }
   }
 
   hideStory(index){
     this.newsFeed.splice(index,1);
-    this.updateNewsFeed();
+    this.updateNewsFeedStore();
   }
 
   upVote(index){
     this.newsFeed[index].points++;
-    this.updateNewsFeed();
+    this.updateNewsFeedStore();
   }
 }

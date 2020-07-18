@@ -43,11 +43,16 @@ export class PaginationComponent implements OnInit {
     this.paginationService.updatePage(this.pageId);
   }
 
+  pageChange(pageChangeDirection){
+    this.paginationService.updatePageChangeDirection(pageChangeDirection);
+  }
+
   onPrevious(){
     this.pageId--;
     if(this.pageId == 1)
       this.disablePrev=true;
     this.setPageId();
+    this.pageChange('prev');
     this.updateRoute();
   }
 
@@ -55,6 +60,7 @@ export class PaginationComponent implements OnInit {
     this.pageId++;
     this.disablePrev = false;
     this.setPageId();
+    this.pageChange('next');
     this.updateRoute();
   }
 
