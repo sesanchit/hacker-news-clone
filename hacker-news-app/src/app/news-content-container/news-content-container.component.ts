@@ -67,7 +67,6 @@ export class NewsContentContainerComponent implements OnInit {
   }
 
   updatePageStore(val: string){
-    debugger;
     if(val=='prev'){
       //TODO
     }
