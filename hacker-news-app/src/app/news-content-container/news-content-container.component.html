@@ -7,7 +7,7 @@
             {{news.points}}
         </div>
         <div class="col-2 col-lg-1">
-            <div role="button" tabindex="0" class="triangle-up" (click)="upVote(i)" title="Up Vote" aria-label="Up Vote"></div>
+            <div role="button" tabindex="0" class="triangle-up" (click)="upVote(i)" (keyup)="upVote(i,$event)" title="Up Vote" aria-label="Up Vote"></div>
         </div>
         <div class="col-6 col-lg-9 detail-col d-none d-lg-block">
             {{news.title?news.title:'No title available'}}

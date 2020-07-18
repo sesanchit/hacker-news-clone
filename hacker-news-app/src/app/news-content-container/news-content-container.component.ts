@@ -80,8 +80,10 @@ export class NewsContentContainerComponent implements OnInit {
     this.updateNewsFeedStore();
   }
 
-  upVote(index){
-    this.newsFeed[index].points++;
-    this.updateNewsFeedStore();
+  upVote(index, evt?: any){
+    if(!evt || (evt.keyCode && (evt.keyCode == 13 || evt.keyCode == 32))){
+      this.newsFeed[index].points++;
+      this.updateNewsFeedStore();
+    }
   }
 }
