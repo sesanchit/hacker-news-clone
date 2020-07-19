@@ -1,6 +1,5 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewsFeedService } from '../news-feed.service';
-import { ActivatedRoute } from '@angular/router';
 import { PaginationService } from '../pagination.service';
 
 @Component({
@@ -15,13 +14,11 @@ export class NewsContentContainerComponent implements OnInit {
   pageChangeEvent: string = "";
 
   constructor(private newsFeedService: NewsFeedService, 
-    private paginationService: PaginationService,
-    private route: ActivatedRoute) { }
+    private paginationService: PaginationService) { }
   
   ngOnInit() {
     this.pageNumberSubscription();
     this.pageDirectionSubscription();
-
   }
 
   pageNumberSubscription(){
@@ -77,12 +74,14 @@ export class NewsContentContainerComponent implements OnInit {
 
   hideStory(index){
     this.newsFeed.splice(index,1);
+    this.newsFeed = [...this.newsFeed];
     this.updateNewsFeedStore();
   }
 
   upVote(index, evt?: any){
     if(!evt || (evt.keyCode && (evt.keyCode == 13 || evt.keyCode == 32))){
       this.newsFeed[index].points++;
+      this.newsFeed = [...this.newsFeed];
       this.updateNewsFeedStore();
     }
   }

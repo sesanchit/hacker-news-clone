@@ -4,6 +4,12 @@
     text-align: center;
 }
 
+@media only screen and (max-width: 576px){
+    .row{
+        text-align: left;
+    }
+}
+
 .detail-col{
     text-align: left;
 }

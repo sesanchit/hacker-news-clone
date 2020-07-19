@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { NewsContentContainerComponent } from './news-content-container/news-content-container.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { VoteChartComponent } from './vote-chart/vote-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageHeaderComponent,
     NewsContentContainerComponent,
-    PaginationComponent
+    PaginationComponent,
+    VoteChartComponent
   ],
   imports: [
     BrowserModule,
